@@ -1,0 +1,31 @@
+services:
+  postgres:
+    # Pinned on purpose: a floating tag means a teammate or CI can get a
+    # different database engine than you are developing against.
+    image: postgres:17-alpine
+    container_name: teamworkspace-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: workspace
+      POSTGRES_PASSWORD: workspace
+      POSTGRES_DB: workspace
+    ports:
+      # host:container. 5432 is already taken on this machine by a local
+      # Postgres, so the container is published on 5433 instead.
+      - "5433:5432"
+    volumes:
+      # A NAMED volume, not a bind mount: Docker manages it, it survives
+      # `docker compose down`, and it avoids macOS filesystem performance
+      # problems with Postgres' data directory.
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      # pg_isready returns 0 only once the server accepts connections.
+      # "container running" is not the same thing as "database ready".
+      test: ["CMD-SHELL", "pg_isready -U workspace -d workspace"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres-data:

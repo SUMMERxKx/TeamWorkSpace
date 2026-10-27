@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm blocks dependency install scripts by default (supply-chain hardening).
+# esbuild is tsx's compiler engine and needs its script to run.
+allowBuilds:
+  esbuild: true

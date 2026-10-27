@@ -1,0 +1,20 @@
+# Dependencies — regenerable from package.json + lockfile
+node_modules
+
+# Build output — derived from source
+dist
+build
+*.tsbuildinfo
+
+# Secrets — broad rule, with the one exception after it
+.env*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Personal notes
+LEARNING.md
