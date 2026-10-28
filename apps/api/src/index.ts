@@ -3,8 +3,13 @@ import type { HealthResponse } from "@workspace/shared";
 
 import { checkDatabase } from "./db";
 import { env } from "./env";
+import { authRouter } from "./auth/routes";
 
 const app = express();
+
+app.use(express.json({ limit: "10kb" }));
+
+app.use("/api/auth", authRouter);
 
 app.get("/api/health", async (_req, res) => {
   const database = await checkDatabase();
