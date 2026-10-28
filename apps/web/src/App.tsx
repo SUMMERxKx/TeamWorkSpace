@@ -61,7 +61,9 @@ export default function App() {
       )}
 
       {state.kind === "loaded" && (
-        <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.5rem 1rem" }}>
+        <dl
+          style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.5rem 1rem" }}
+        >
           <dt>Status</dt>
           <dd style={{ margin: 0 }}>{state.data.status}</dd>
 

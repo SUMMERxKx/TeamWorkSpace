@@ -8,7 +8,13 @@
     "pnpm": ">=10"
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0"
   },
   "scripts": {
     "dev": "pnpm -r --parallel run dev",
@@ -16,6 +22,10 @@
     "typecheck": "pnpm -r run typecheck",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
-    "db:logs": "docker compose logs -f postgres"
+    "db:logs": "docker compose logs -f postgres",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   }
 }
